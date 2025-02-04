@@ -28,7 +28,7 @@ export default {
         robertoMono : ["var(--font-roboto-mono)"],
         kumarOne : ["var(--font-kumar-one)"],
         sans: ["var(--font-sans)"],
-      }
+      },
     },
   },
   plugins: [],
