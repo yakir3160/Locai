@@ -34,7 +34,7 @@ export default function RootLayout({
             robertoMono.variable,
             kumarOne.variable,
             inter.variable,
-            `antialiased font-roberto-mono text-black bg-white`
+            `antialiased   bg-background text-foreground`
         )}
       >
         {children}
