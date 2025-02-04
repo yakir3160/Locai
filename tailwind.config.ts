@@ -12,6 +12,11 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        robertoMono : ["var(--font-roboto-mono)"],
+        kumarOne : ["var(--font-kumar-one)"],
+        sans: ["var(--font-sans)"],
+      }
     },
   },
   plugins: [],
