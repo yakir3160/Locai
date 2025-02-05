@@ -23,6 +23,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'gradient-ai': 'linear-gradient(to right, #ff69b4, #a8ff78)',
       },
       fontFamily: {
         robertoMono : ["var(--font-roboto-mono)"],

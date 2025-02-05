@@ -3,6 +3,8 @@ import {Roboto_Mono, Kumar_One, Inter} from "next/font/google";
 import "./globals.css";
 import {twMerge} from "tailwind-merge";
 
+
+
 const inter = Inter({
     variable: "--font-sans",
     subsets: ["latin"],
@@ -34,7 +36,7 @@ export default function RootLayout({
             robertoMono.variable,
             kumarOne.variable,
             inter.variable,
-            `antialiased   bg-background text-foreground`
+            `antialiased   bg-background text-foreground font-robertoMono`
         )}
       >
         {children}

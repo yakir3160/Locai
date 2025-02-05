@@ -5,15 +5,38 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #201b1f;
+  --foreground: #181417;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #201b1f;
+    --background: #181417;
     --foreground: #ededed;
   }
 }
-.logo_llm{
-  text-shadow: #FFA500 2px 2px  0 ;
+.bg-gradient-ai {
+  @apply bg-gradient-to-r from-pink-500 via-rose-400 to-orange-500;
+}
+.logo {
+  background-image: linear-gradient(
+          to left ,
+          #ff7ebf 20%,
+          #ffbb82 40%,
+          #ff984b 60%,
+          #ff7ebf 80%
+  );
+  background-size: 200%;
+  color: transparent;
+  -webkit-background-clip: text;
+  animation: shine 15s infinite linear;
+}
+
+@keyframes shine {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 200%;
+  }
+
 }
