@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {Logo} from "@/src/components/Logo";
+import Logo from "@/src/components/Logo";
 import {ChatInterface} from "@/src/components/ChatInterface";
 
 export default function Home() {
