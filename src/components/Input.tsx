@@ -36,7 +36,7 @@ export const Input: React.FC = () => {
                         className="px-6 py-4 focus:outline-none bg-transparent w-full "
                         autoFocus={true}
                     />
-                    <div className={`flex-shrink-0 size-16 bg-background items-center justify-center inline-flex rounded-3xl  `}>
+                    <div className={`flex-shrink-0 p-1 bg-background items-center justify-center inline-flex rounded-3xl  `}>
                         <button
                             type="submit"
                             disabled={!inputText.trim()}
