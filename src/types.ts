@@ -5,3 +5,7 @@ export interface Message {
     sender: 'user' | 'assistant';
     timestamp: Date;
 }
+export interface Chat {
+    id: string;
+    messages: Message[];
+}
