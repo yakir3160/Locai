@@ -18,7 +18,7 @@ export function ControlPanel({
                                  setFactCheck,
                              }: ControlPanelProps) {
     return (
-        <div className="flex flex-wrap justify-between items-center mt-4 space-y-2 md:space-y-0 gap-2 text-sm">
+        <div className="flex flex-wrap justify-center items-center md:justify-between mt-4 space-y-2 md:space-y-0 gap-2 text-sm">
             <RadioGroup
                 value={modelCount}
                 onValueChange={(value) => setModelCount(value as "1" | "2")}

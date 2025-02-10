@@ -59,14 +59,14 @@ export const ChatInput = ({
                                 }}
                                 autoFocus
                             />
-                            <Button
+                            <button
                                 type="submit"
                                 disabled={!input?.trim()}
-                                className=" relative top-0 rounded-full bg-gradient-ai p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className=" relative top-0  rounded-2xl  bg-gradient-ai p-2 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                                 aria-label="Send message"
                             >
                                 <ArrowUp className="size-6" />
-                            </Button>
+                            </button>
                         </div>
                     </form>
                 </div>

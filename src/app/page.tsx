@@ -33,7 +33,7 @@ export default function AdvancedChatbot() {
     const [factCheck, setFactCheck] = useState(false);
     const [messages, setMessages] = useState(mockMessages);
     const [input, setInput] = useState("");
-    const [showHistory, setShowHistory] = useState(true);
+    const [showHistory, setShowHistory] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
@@ -54,63 +54,30 @@ export default function AdvancedChatbot() {
     };
 
     return (
-        <div className="flex flex-col ">
-            <Header
-                isOnline={isOnline}
-                setIsOnline={setIsOnline}
-            />
-            <div className="flex h-[100vh] bg-background mt-24 relative">
-                {/* Sidebar for mobile (fixed overlay) */}
-                <div
-                    className={`
-                        lg:hidden fixed top-0 bottom-0 left-0 w-64 
-                        ${!showHistory ? "translate-x-0" : "-translate-x-full"}
-                        transition-transform duration-300 
-                        bg-background z-40 rounded-r-3xl border overflow-y-auto
-                    `}
-                >
-                    <div className="p-4">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="text-lg font-semibold bg-gradient-ai text-transparent bg-clip-text">Chat History</div>
-                        </div>
-                        <div className="space-y-2">
-                            {messages.map((message, index) => (
-                                <div
-                                    key={index}
-                                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
-                                >
-                                    {message.text.substring(0, 30)}...
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+        <div className="flex flex-col">
+            <Header isOnline={isOnline} setIsOnline={setIsOnline} />
+            <div className="flex mt-24 h-[calc(100vh-14rem)] md:h-[calc(100vh-6rem)]">
+                {/* Mobile Sidebar */}
+                <aside className={`
+                    lg:hidden fixed inset-y-0 left-0 w-64 
+                    ${showHistory ? "-translate-x-0" : "-translate-x-full"}
+                    transition-transform duration-300 
+                    bg-background z-40 rounded-r-3xl border overflow-y-auto
+                `}>
+                    <SidebarContent messages={messages} />
+                </aside>
 
-                {/* Sidebar for desktop (pushes content) */}
-                <div
-                    className={`
-                        hidden lg:block
-                        ${showHistory ? "w-64" : "w-0"}
-                        transition-all duration-300 
-                        bg-pink-950/5 border-r rounded-tr-3xl overflow-hidden
-                    `}
-                >
-                    <div className="w-64 p-4">
-                        <div className="flex items-center justify-between mb-4">
-                            <div className="text-lg font-semibold">Chat History</div>
-                        </div>
-                        <div className="space-y-2">
-                            {messages.map((message, index) => (
-                                <div
-                                    key={index}
-                                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
-                                >
-                                    {message.text.substring(0, 30)}...
-                                </div>
-                            ))}
-                        </div>
+                {/* Desktop Sidebar */}
+                <aside className={`
+                    hidden lg:block
+                    ${showHistory ? "w-64" : "w-0"}
+                    transition-all duration-300 
+                    bg-pink-950/5 border rounded-tr-3xl overflow-hidden
+                `}>
+                    <div className="w-64">
+                        <SidebarContent messages={messages} />
                     </div>
-                </div>
+                </aside>
 
                 {/* Toggle Button */}
                 <button
@@ -118,16 +85,16 @@ export default function AdvancedChatbot() {
                     className="fixed bottom-5 left-4 bg-pink-950/5 rounded-full p-2
                     focus:outline-none hover:bg-pink-950/10 z-50 text-pink-500"
                 >
-                    {showHistory ? (
-                        <PanelLeftClose className="size-6" />
-                    ) : (
-                        <PanelLeftOpen className="size-6" />
-                    )}
+                    {showHistory ? <PanelLeftClose className="size-6" /> : <PanelLeftOpen className="size-6" />}
                 </button>
 
                 {/* Main Content */}
-                <div className="flex-1 flex flex-col justify-end  relative">
-                    <div className=" px-6 md:px-12 py-2  overflow-y-auto">
+                <main className={`
+                    flex-1 flex flex-col justify-end
+                    transition-all duration-300
+                    ${showHistory ? 'lg:ml-0' : 'lg:ml-4'}
+                `}>
+                    <div className="px-6 md:px-12 py-2 overflow-y-auto">
                         <ChatInput
                             input={input}
                             handleInputChange={handleInputChange}
@@ -140,8 +107,29 @@ export default function AdvancedChatbot() {
                             setFactCheck={setFactCheck}
                         />
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     );
 }
+
+// Extracted Sidebar Content Component
+const SidebarContent = ({ messages }) => (
+    <div className="p-4">
+        <div className="flex items-center justify-between mb-4">
+            <div className="text-lg font-semibold bg-gradient-ai text-transparent bg-clip-text">
+                Chat History
+            </div>
+        </div>
+        <div className="space-y-2">
+            {messages.map((message, index) => (
+                <div
+                    key={index}
+                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
+                >
+                    {message.text.substring(0, 30)}...
+                </div>
+            ))}
+        </div>
+    </div>
+);
