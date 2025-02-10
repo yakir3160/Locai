@@ -16,7 +16,7 @@ export const Header = ({isOnline ,setIsOnline} : HeaderProps) => {
             <Logo/>
             <div className={`flex pt-2 items-center space-x-4`}>
                 <div
-                    className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 ${isOnline ? " border-green-500" : "border-pink-500"}  p-2 rounded-full`}>
+                    className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 ${isOnline ? " border-green-500" : "border-pink-500"}  p-2 rounded-3xl`}>
                     <Switch id="online-mode" checked={isOnline} onCheckedChange={setIsOnline}/>
                     <Label htmlFor="online-mode"
                            className={`transition-all ${isOnline ? "text-green-500" : "bg-gradient-ai text-transparent bg-clip-text"} w-max`}>

@@ -31,10 +31,10 @@ const ThemeToggle = () => {
     }
 
     return (
-        <div className={'bg-gradient-ai p-[0.5px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl'}>
+        <div className={'bg-gradient-ai p-[0.7px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl'}>
             <button
                 onClick={toggleTheme}
-                className="p-2 rounded-3xl bg-background  hover:bg-secondary/80 transition-colors"
+                className="p-2 rounded-3xl bg-background  transition-colors"
                 aria-label="Toggle theme"
                 type="button"
             >

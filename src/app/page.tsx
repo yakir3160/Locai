@@ -82,17 +82,17 @@ export default function AdvancedChatbot() {
                 {/* Toggle Button */}
                 <button
                     onClick={() => setShowHistory(!showHistory)}
-                    className="fixed bottom-5 left-4 bg-pink-950/5 rounded-full p-2
-                    focus:outline-none hover:bg-pink-950/10 z-50 text-pink-500"
+                    className="fixed bottom-5 left-4  rounded-full p-2
+                    focus:outline-none 0 text-pink-500 z-50"
                 >
-                    {showHistory ? <PanelLeftClose className="size-6" /> : <PanelLeftOpen className="size-6" />}
+                    {showHistory ? <PanelLeftClose className="size-7" /> : <PanelLeftOpen className="size-7" />}
                 </button>
 
                 {/* Main Content */}
                 <main className={`
                     flex-1 flex flex-col justify-end
                     transition-all duration-300
-                    ${showHistory ? 'lg:ml-0' : 'lg:ml-4'}
+                    ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
                 `}>
                     <div className="px-6 md:px-12 py-2 overflow-y-auto">
                         <ChatInput

@@ -131,7 +131,8 @@
           #ff7ebf 20%,
           #ffa9d4 40%,
           #ff8d37 60%,
-          #ff7ebf 80%
+          #ff6d00 70%,
+          #ff7ebf 90%
   );
   background-size: 200%;
   animation: rotate 10s infinite linear;
