@@ -12,15 +12,21 @@ interface HeaderProps {
 }
 export const Header = ({isOnline ,setIsOnline} : HeaderProps) => {
     return (
-        <header className="flex flex-col md:flex-row justify-between items-center p-4 bg-background fixed top-5 px-10 left-0 right-0 z-10">
+        <header className="flex flex-col md:flex-row justify-between items-center p-4 bg-background fixed  pt-6 px-10 left-0 right-0 z-10">
             <Logo/>
-            <div className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 ${isOnline  ? " border-green-500" : "border-pink-500"}  p-2 rounded-full`}>
-                <Switch id="online-mode" checked={isOnline} onCheckedChange={setIsOnline}/>
-                <Label htmlFor="online-mode" className={`transition-all ${isOnline ? "text-green-500" : "bg-gradient-ai text-transparent bg-clip-text"} w-max`}>
-                    {isOnline ? "Online" : "Local"}
-                </Label>
+            <div className={`flex pt-2 items-center space-x-4`}>
+                <div
+                    className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 ${isOnline ? " border-green-500" : "border-pink-500"}  p-2 rounded-full`}>
+                    <Switch id="online-mode" checked={isOnline} onCheckedChange={setIsOnline}/>
+                    <Label htmlFor="online-mode"
+                           className={`transition-all ${isOnline ? "text-green-500" : "bg-gradient-ai text-transparent bg-clip-text"} w-max`}>
+                        {isOnline ? "Online" : "Local"}
+                    </Label>
+                </div>
+                <ThemeToggle/>
             </div>
-            <ThemeToggle/>
+
+
         </header>
     );
 };

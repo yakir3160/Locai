@@ -10,7 +10,7 @@ export const Logo = () => {
           <span className="text-4xl font-bold">locai</span>
           <HomeIcon className="size-9 fill-[url(#logo-gradient)] " />
         </Link>
-        <svg className="size-0 logo">
+        <svg className="size-0 ">
           <linearGradient id="logo-gradient">
             <stop offset="0%" stopColor="#ec4899" />
             <stop offset="100%" stopColor="#f97316" />

@@ -8,7 +8,7 @@ const ThemeToggle = () => {
     const [isMounted, setIsMounted] = useState<boolean>(false);
 
     useEffect(() => {
-        // Get theme from localStorage or system preference
+        
         const storedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 

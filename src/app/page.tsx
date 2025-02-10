@@ -1,45 +1,146 @@
-"use client"
+'use client';
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { ChatInput } from "@/components/ui/ChatInput";
+import { MessageDisplay } from "@/components/ui/MessageDisplay";
+import { Header } from "@/components/ui/custom/Header";
+import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 
-import { useState } from "react"
-import { useChat } from "ai/react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { ChatInput } from "@/components/ui/ChatInput"
-import { MessageDisplay } from "@/components/ui/MessageDisplay"
-import { Header } from "@/components/ui/custom/Header"
-
+const mockMessages = [
+    {
+        id: "1",
+        text: "Hello! How can I help you today?",
+        sender: "bot",
+        timestamp: new Date("2023-10-01T10:00:00Z"),
+    },
+    {
+        id: "2",
+        text: "I need some information about your services.",
+        sender: "user",
+        timestamp: new Date("2023-10-01T10:01:00Z"),
+    },
+    {
+        id: "3",
+        text: "Sure! We offer a variety of services including AI consulting and development.",
+        sender: "bot",
+        timestamp: new Date("2023-10-01T10:02:00Z"),
+    },
+];
 
 export default function AdvancedChatbot() {
     const [modelCount, setModelCount] = useState<"1" | "2">("1");
     const [isOnline, setIsOnline] = useState(true);
     const [factCheck, setFactCheck] = useState(false);
+    const [messages, setMessages] = useState(mockMessages);
+    const [input, setInput] = useState("");
+    const [showHistory, setShowHistory] = useState(true);
 
-    const { messages, input, handleInputChange, handleSubmit } = useChat({
-        api: "/api/chat",
-        body: { modelCount, isOnline, factCheck },
-    });
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (input.trim()) {
+            const newMessage = {
+                id: crypto.randomUUID(),
+                text: input,
+                sender: "user",
+                timestamp: new Date(),
+            };
+            setMessages([...messages, newMessage]);
+            setInput("");
+        }
+    };
 
     return (
-        <div className="bg-background min-h-screen flex flex-col">
+        <div className="flex flex-col ">
             <Header
-                modelCount={modelCount}
-                setModelCount={setModelCount}
                 isOnline={isOnline}
                 setIsOnline={setIsOnline}
-                factCheck={factCheck}
-                setFactCheck={setFactCheck}
             />
-            <div className="flex-grow grid grid-cols-1 justify-center min-h-screen bg-background p-4 gap-6 pt-24">
-                <CardHeader className="rounded-3xl">
-                    <CardTitle className="text-2xl font-bold">Advanced Chatbot</CardTitle>
-                </CardHeader>
-                <Card className="w-full max-w-2xl shadow-lg rounded-3xl overflow-hidden">
-                    <CardContent className="">
-                        <MessageDisplay messages={messages} />
-                    </CardContent>
-                </Card>
-                <CardFooter className="rounded-3xl">
-                    <ChatInput input={input} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
-                </CardFooter>
+            <div className="flex h-[100vh] bg-background mt-24 relative">
+                {/* Sidebar for mobile (fixed overlay) */}
+                <div
+                    className={`
+                        lg:hidden fixed top-0 bottom-0 left-0 w-64 
+                        ${!showHistory ? "translate-x-0" : "-translate-x-full"}
+                        transition-transform duration-300 
+                        bg-background z-40 rounded-r-3xl border overflow-y-auto
+                    `}
+                >
+                    <div className="p-4">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="text-lg font-semibold bg-gradient-ai text-transparent bg-clip-text">Chat History</div>
+                        </div>
+                        <div className="space-y-2">
+                            {messages.map((message, index) => (
+                                <div
+                                    key={index}
+                                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
+                                >
+                                    {message.text.substring(0, 30)}...
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Sidebar for desktop (pushes content) */}
+                <div
+                    className={`
+                        hidden lg:block
+                        ${showHistory ? "w-64" : "w-0"}
+                        transition-all duration-300 
+                        bg-pink-950/5 border-r rounded-tr-3xl overflow-hidden
+                    `}
+                >
+                    <div className="w-64 p-4">
+                        <div className="flex items-center justify-between mb-4">
+                            <div className="text-lg font-semibold">Chat History</div>
+                        </div>
+                        <div className="space-y-2">
+                            {messages.map((message, index) => (
+                                <div
+                                    key={index}
+                                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
+                                >
+                                    {message.text.substring(0, 30)}...
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Toggle Button */}
+                <button
+                    onClick={() => setShowHistory(!showHistory)}
+                    className="fixed bottom-5 left-4 bg-pink-950/5 rounded-full p-2
+                    focus:outline-none hover:bg-pink-950/10 z-50 text-pink-500"
+                >
+                    {showHistory ? (
+                        <PanelLeftClose className="size-6" />
+                    ) : (
+                        <PanelLeftOpen className="size-6" />
+                    )}
+                </button>
+
+                {/* Main Content */}
+                <div className="flex-1 flex flex-col justify-end  relative">
+                    <div className=" px-6 md:px-12 py-2  overflow-y-auto">
+                        <ChatInput
+                            input={input}
+                            handleInputChange={handleInputChange}
+                            handleSubmit={handleSubmit}
+                            modelCount={modelCount}
+                            setModelCount={setModelCount}
+                            isOnline={isOnline}
+                            setIsOnline={setIsOnline}
+                            factCheck={factCheck}
+                            setFactCheck={setFactCheck}
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     );
