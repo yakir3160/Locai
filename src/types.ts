@@ -1,9 +1,8 @@
-// types.ts
+
 export interface Message {
-    id: string;
+    id: string
     text: string;
-    sender: 'user' | 'assistant';
-    timestamp: Date;
+    isUser: boolean;
 }
 export interface Chat {
     id: string;
