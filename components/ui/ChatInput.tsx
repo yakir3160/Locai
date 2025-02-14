@@ -27,16 +27,16 @@ export const ChatInput = ({
                               setFactCheck,
                           }: ChatInputProps) => {
     return (
-        <div className="mb-5">
+        <div className="">
             <div className="bg-pink-950/5 border rounded-[25px] text-base">
                 <div className="bg-animation  p-[0.5px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
-                    <form onSubmit={handleSubmit} className="flex flex-col w-full items-center space-y-2 bg-background rounded-3xl py-2 md:py-2.5 px-2 ">
-                        <div className="flex w-full items-center space-x-2">
+                    <form onSubmit={handleSubmit} className="flex flex-col w-full items-center space-y-2 bg-background rounded-3xl p-1 ">
+                        <div className="flex w-full items-center ">
                             <textarea
                                 value={input}
                                 onChange={(e) => handleInputChange(e as any)}
                                 placeholder="How can I help you?"
-                                className="flex-grow px-4 bg-transparent   py-2 resize-none min-h-[40px] max-h-[200px] overflow-y-auto rounded-md  focus:outline-none "
+                                className="flex-grow px-4 bg-transparent  py-2 resize-none min-h-[40px] max-h-[200px] overflow-y-auto rounded-md  focus:outline-none "
                                 style={{ height: 'auto' }}
                                 rows={1}
                                 onInput={(e) => {
@@ -62,7 +62,7 @@ export const ChatInput = ({
                             <button
                                 type="submit"
                                 disabled={!input?.trim()}
-                                className=" relative top-0 self-end  rounded-2xl  bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className=" relative top-0 self-end  rounded-[20px] md:rounded-[20px] bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                                 aria-label="Send message"
                             >
                                 <ArrowUp className="size-6" />
@@ -70,7 +70,7 @@ export const ChatInput = ({
                         </div>
                     </form>
                 </div>
-                <div className="w-full px-3 pb-2">
+                <div className="w-full px-2 pb-2">
                     <ControlPanel
                         modelCount={modelCount}
                         setModelCount={setModelCount}

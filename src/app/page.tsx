@@ -3,8 +3,9 @@ import {FormEvent, useState} from "react";
 import { ChatInput } from "@/components/ui/ChatInput";
 import { Header } from "@/components/ui/custom/Header";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
-import {useScrollToView} from "@/src/hooks/useScrollToView";
+
 import {Message} from "@/src/types";
+import ChatInterface from "@/components/ChatInterface";
 
 
 
@@ -16,7 +17,7 @@ export default function AdvancedChatbot() {
     const [showHistory, setShowHistory] = useState(false);
     const [conversation, setConversation] = useState<Message[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const conversationEndRef = useScrollToView(conversation);
+
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
@@ -112,7 +113,7 @@ export default function AdvancedChatbot() {
                 {/* Toggle Button */}
                 <button
                     onClick={() => setShowHistory(!showHistory)}
-                    className="fixed bottom-5 left-4 rounded-full p-2
+                    className="fixed top-0.5 md:top-[6.5rem]  rounded-full p-2
                     focus:outline-none text-pink-500 z-50"
                 >
                     {showHistory ? <PanelLeftClose className="size-7" /> : <PanelLeftOpen className="size-7" />}
@@ -124,25 +125,9 @@ export default function AdvancedChatbot() {
                     transition-all duration-300
                     ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
                 `}>
-                    <div className="w-fit flex-grow overflow-y-auto p-8 space-y-6 rounded-3xl  bg-pink-950/5">
-                        {conversation.map((message, i) => (
-                            <div
-                                key={i}
-                                className={`p-4 my-2 rounded-3xl ${
-                                    message.isUser
-                                        ? 'bg-pink-950/20 text-foreground'
-                                        : 'border-t-2 border-pink-500  text-foreground '
-                                } max-w-fit`}
-                            >
-                                {message.text}
-                                <div className="text-xs text-right text-pink-500">{message.timestamp}</div>
-                            </div>
-                        ))}
-                        <div ref={conversationEndRef}/>
-                    </div>
 
-                    <div className="px-6 md:px-12 py-2 overflow-y-auto space-y-6">
-
+                    <div className="px-6 md:px-12  overflow-y-auto space-y-2 flex flex-col flex-grow">
+                        <ChatInterface conversation={conversation} showHistory={showHistory} />
                         <ChatInput
                             input={input}
                             handleInputChange={handleInputChange}
@@ -164,7 +149,7 @@ export default function AdvancedChatbot() {
 
 const SidebarContent = ({messages}: { messages: Message[] }) => (
     <div className="p-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-center mb-4">
             <div className="text-lg font-semibold bg-gradient-ai text-transparent bg-clip-text">
                 Chat History
             </div>

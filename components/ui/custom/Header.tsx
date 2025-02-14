@@ -13,7 +13,7 @@ interface HeaderProps {
 export const Header = ({isOnline ,setIsOnline} : HeaderProps) => {
     return (
         <header className="flex flex-col md:flex-row justify-between items-center p-4 bg-background fixed  pt-6 px-10 left-0 right-0 z-10">
-            <Logo/>
+
             <div className={`flex pt-2 items-center space-x-4`}>
                 <div
                     className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 ${isOnline ? " border-green-500" : "border-pink-500"}  p-2 rounded-3xl`}>
@@ -23,6 +23,7 @@ export const Header = ({isOnline ,setIsOnline} : HeaderProps) => {
                         {isOnline ? "Online" : "Local"}
                     </Label>
                 </div>
+                <Logo/>
                 <ThemeToggle/>
             </div>
 
