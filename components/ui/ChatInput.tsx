@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Message } from "@/types";
 import { ControlPanel } from "@/components/ui/ControlPanel";
+import {CircleStop} from 'lucide-react';
 
 interface ChatInputProps {
     input: string;
@@ -63,18 +64,13 @@ export const ChatInput = ({
                                 autoFocus
                             />
                             {
-                                !isLoading ? (
+                                isLoading ? (
                                     <button
                                         type="submit"
-                                        disabled={!input?.trim()}
                                         className=" flex flex-row relative top-0 self-end  rounded-[20px] md:rounded-[20px] bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                                         aria-label="Stop message"
                                     >
-                                        <div className="flex items-center justify-center">
-                                            <div
-                                                className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-foreground"/>
-                                        </div>
-                                        stop
+                                        <CircleStop className={`size-6 animate-pulse `}/>
                                     </button>
                                 ) : (
 

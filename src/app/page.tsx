@@ -113,7 +113,7 @@ export default function AdvancedChatbot() {
                 {/* Toggle Button */}
                 <button
                     onClick={() => setShowHistory(!showHistory)}
-                    className="fixed top-0.5 md:top-[6.5rem]  rounded-full p-2
+                    className="fixed top-2 ml-4 md:top-[6.5rem] md:ml-2  rounded-2xl p-2
                     focus:outline-none text-pink-500 z-50"
                 >
                     {showHistory ? <PanelLeftClose className="size-7" /> : <PanelLeftOpen className="size-7" />}
@@ -122,12 +122,13 @@ export default function AdvancedChatbot() {
                 {/* Main Content */}
                 <main className={`
                     flex-1 flex flex-col justify-end
-                    transition-all duration-300
+                    h-[calc(100svh-11rem)] md:h-[calc(100svh-6rem)]
+                    transition-all duration-300 pt-2
                     ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
                 `}>
 
-                    <div className="px-2 md:px-36  overflow-y-auto space-y-2 flex flex-col flex-grow">
-                        <ChatInterface conversation={conversation} showHistory={showHistory} />
+                    <div className="px-2 md:px-12  overflow-y-auto space-y-2 flex flex-col flex-grow">
+                        <ChatInterface conversation={conversation} showHistory={showHistory} isLoading={isLoading} />
                         <ChatInput
                             input={input}
                             handleInputChange={handleInputChange}
@@ -148,7 +149,7 @@ export default function AdvancedChatbot() {
 const SidebarContent = ({messages}: { messages: Message[] }) => (
     <div className="p-4">
         <div className="flex items-center justify-center mb-4">
-            <div className="text-lg font-semibold bg-gradient-ai text-transparent bg-clip-text">
+            <div className="text-lg ml-2 mb-1 font-semibold bg-gradient-ai text-transparent bg-clip-text">
                 Chat History
             </div>
         </div>
