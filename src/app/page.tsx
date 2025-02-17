@@ -10,7 +10,7 @@ import ChatInterface from "@/components/ChatInterface";
 
 
 export default function AdvancedChatbot() {
-    const [modelCount, setModelCount] = useState<"1" | "2">("1");
+    const [multiModel, setMultiModel] = useState(false);
     const [isOnline, setIsOnline] = useState(true);
     const [factCheck, setFactCheck] = useState(false);
     const [input, setInput] = useState("");
@@ -126,16 +126,14 @@ export default function AdvancedChatbot() {
                     ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
                 `}>
 
-                    <div className="px-6 md:px-12  overflow-y-auto space-y-2 flex flex-col flex-grow">
+                    <div className="px-2 md:px-36  overflow-y-auto space-y-2 flex flex-col flex-grow">
                         <ChatInterface conversation={conversation} showHistory={showHistory} />
                         <ChatInput
                             input={input}
                             handleInputChange={handleInputChange}
                             handleSubmit={handleSubmit}
-                            modelCount={modelCount}
-                            setModelCount={setModelCount}
-                            isOnline={isOnline}
-                            setIsOnline={setIsOnline}
+                            multiModel={multiModel}
+                            setMultiModel={setMultiModel}
                             factCheck={factCheck}
                             setFactCheck={setFactCheck}
                             isLoading={isLoading}

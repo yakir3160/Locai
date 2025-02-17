@@ -1,5 +1,5 @@
 
-import HomeIcon from "@/src/assets/icons/home-smile-svgrepo-com.svg";
+import HomeIcon from "@/src/assets/icons/home-smile.svg";
 import Link from "next/link";
 
 export const Logo = () => {

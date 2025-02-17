@@ -65,8 +65,8 @@ const ChatInterface = ({ conversation = [], showHistory = true }) => {
                                         transition={{ duration: 0.3 }}
                                         className={`p-4 my-2  whitespace-pre-line ${
                                             message.isUser
-                                                ? 'text-foreground  border-2 rounded-tl-none rounded-3xl border-orange-500/30'
-                                                : ' bg-pink-950/10 border-2 rounded-tr-none rounded-3xl border-pink-500/60 text-foreground'
+                                                ? 'text-foreground  border rounded-tl-none rounded-3xl border-orange-500/50'
+                                                : ' bg-pink-950/5 border rounded-tr-none rounded-3xl border-pink-500/50 text-foreground'
                                         } max-w-fit`}
                                     >
                                         {message.text}

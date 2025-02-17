@@ -9,22 +9,25 @@ interface ChatInputProps {
     input: string;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-    modelCount: "1" | "2";
-    setModelCount: (value: "1" | "2") => void;
+    multiModel: boolean;
+    setMultiModel: (value: boolean) => void;
     isOnline: boolean;
     setIsOnline: (value: boolean) => void;
     factCheck: boolean;
     setFactCheck: (value: boolean) => void;
+    isLoading: boolean;
 }
 
 export const ChatInput = ({
                               input,
                               handleInputChange,
                               handleSubmit,
-                              modelCount,
-                              setModelCount,
+                              multiModel,
+                              setMultiModel,
                               factCheck,
                               setFactCheck,
+                              isLoading,
+
                           }: ChatInputProps) => {
     return (
         <div className="">
@@ -59,21 +62,41 @@ export const ChatInput = ({
                                 }}
                                 autoFocus
                             />
-                            <button
-                                type="submit"
-                                disabled={!input?.trim()}
-                                className=" relative top-0 self-end  rounded-[20px] md:rounded-[20px] bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
-                                aria-label="Send message"
-                            >
-                                <ArrowUp className="size-6" />
-                            </button>
+                            {
+                                !isLoading ? (
+                                    <button
+                                        type="submit"
+                                        disabled={!input?.trim()}
+                                        className=" flex flex-row relative top-0 self-end  rounded-[20px] md:rounded-[20px] bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        aria-label="Stop message"
+                                    >
+                                        <div className="flex items-center justify-center">
+                                            <div
+                                                className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-foreground"/>
+                                        </div>
+                                        stop
+                                    </button>
+                                ) : (
+
+                                    <button
+                                        type="submit"
+                                        disabled={!input?.trim()}
+                                        className=" relative top-0 self-end  rounded-[20px] md:rounded-[20px] bg-gradient-ai p-2 md:p-3 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        aria-label="Send message"
+                                    >
+                                        <ArrowUp className="size-6"/>
+
+                                    </button>
+                                )
+                            }
+
                         </div>
                     </form>
                 </div>
                 <div className="w-full px-2 pb-2">
                     <ControlPanel
-                        modelCount={modelCount}
-                        setModelCount={setModelCount}
+                        multiModel={multiModel}
+                        setMultiModel={setMultiModel}
                         factCheck={factCheck}
                         setFactCheck={setFactCheck}
                     />

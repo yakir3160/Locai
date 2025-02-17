@@ -20,8 +20,11 @@ const kumarOne = Kumar_One({
 });
 
 export const metadata: Metadata = {
-  title: "Locallm",
-  description: "Locallm",
+  title: "Locai",
+  description: "Locai is a chat application for local models",
+    icons: {
+        icon: '@/src/assets/icons/home-smile.svg',
+}
 };
 
 export default function RootLayout({
