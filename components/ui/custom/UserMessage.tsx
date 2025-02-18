@@ -15,7 +15,7 @@ export const UserMessage = ({ message }: UserMessageProps) => {
             transition={{ duration: 0.3 }}
             className="w-full flex"
         >
-            <div className="p-4 m-2 whitespace-pre-line flex gap-2 text-foreground border rounded-tl-none rounded-3xl border-orange-500/50 mr-auto">
+            <div className="p-4 m-2 whitespace-pre-line flex gap-2 mt-4 text-foreground border rounded-tl-none rounded-3xl border-orange-500/50 mr-auto">
                 {message.text}
             </div>
         </motion.div>

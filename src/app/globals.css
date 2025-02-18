@@ -111,6 +111,9 @@
 .bg-gradient-ai {
   @apply bg-gradient-to-r from-pink-500 via-rose-400 to-orange-500;
 }
+.bg-gradient-ai-dark {
+  @apply bg-gradient-to-r from-[#2c0412] via-[#380613] to-[#341107]; ;
+}
 
 .logo {
   background-image: linear-gradient(
