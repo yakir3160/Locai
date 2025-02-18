@@ -29,9 +29,8 @@ export const ModelMessage = ({ message }: ModelMessageProps) => {
             transition={{ duration: 0.3 }}
             className="w-full flex"
         >
-            <div className="bg-pink-950/10 rounded-3xl rounded-tr-none max-w-full w-full mt-2 text-md ">
-                <div className="p-4 rounded-3xl rounded-tr-none flex gap-2 border border-pink-500/50 bg-pink-950/5 text-foreground">
-
+            <div className=" rounded-3xl rounded-tr-none max-w-full w-full  text-md  bg-pink-950/10 ">
+                <div className="p-4 rounded-3xl rounded-tr-none flex gap-2   border border-pink-500/50   text-foreground  ">
                     <div className="prose dark:prose-invert max-w-none flex-grow  space-y-2 w-full whitespace-normal">
                         <div className="flex flex-col  ml-2">
                             <div className={`${isLoading ? "animate-pulse" : ""} w-fit self-end`}>
@@ -58,7 +57,7 @@ export const ModelMessage = ({ message }: ModelMessageProps) => {
                     </div>
 
                 </div>
-                <button onClick={handleCopy} className="text-pink-500 p-3">
+                <button onClick={handleCopy} className="text-pink-500 p-3 ">
                     {isCopied ? <CopyCheck className="size-6"/> : <Copy className="size-6"/>}
                 </button>
             </div>
