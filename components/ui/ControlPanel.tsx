@@ -1,24 +1,13 @@
 
-
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
+import {useChatStore} from "@/src/store/chatStore";
 
-interface ControlPanelProps {
-    multiModel: boolean
-    setMultiModel: (value: boolean) => void
-    factCheck: boolean
-    setFactCheck: (value: boolean) => void
-}
 
-export function ControlPanel({
-                                 multiModel,
-                                 setMultiModel,
-                                 factCheck,
-                                 setFactCheck,
-                             }: ControlPanelProps) {
+export const  ControlPanel = () =>  {
+    const { multiModel, setMultiModel, factCheck, setFactCheck } = useChatStore();
     return (
-        <div className="flex flex-row text-nowrap justify-center items-center md:justify-between mt-4 space-y-2 md:space-y-0 text-sm">
+        <div className="flex flex-row text-nowrap justify-center items-center md:justify-between mt-2 p-2 space-y-2 md:space-y-0 text-sm">
             <div className={`flex flex-row items-center`}>
                 <div className="flex items-center space-x-2  p-2 rounded-full">
                     <Checkbox id={"multi-model"} checked={multiModel} onCheckedChange={setMultiModel} className={`border border-pink-500/50 data-[state=checked]:bg-pink-500`}/>

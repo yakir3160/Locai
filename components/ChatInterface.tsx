@@ -1,10 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollToView } from "@/src/hooks/useScrollToView";
-import HomeIcon from "@/src/assets/icons/home-smile.svg";
-import {CircleStop} from 'lucide-react'
+import HomeIcon  from '@/src/assets/icons/home-smile.svg';
+import {useChatStore} from "@/src/store/chatStore";
 
-const ChatInterface = ({ conversation = [], showHistory = true, isLoading }: {conversation : [], showHistory:boolean, isLoading:boolean}) => {
+export const ChatInterface = () => {
+    const { conversation, isLoading } = useChatStore();
     const conversationEndRef = useScrollToView(conversation);
 
     useEffect(() => {
@@ -76,8 +77,7 @@ const ChatInterface = ({ conversation = [], showHistory = true, isLoading }: {co
                                         {message.text}
                                         {
                                             !message.isUser && (
-                                                <div
-                                                    className={`${isLoading ? 'animate-pulse' : ''} w-fit self-start`}>
+                                                <div className={`${isLoading ? 'animate-pulse' : ''} w-fit self-start`}>
                                                     <HomeIcon className="size-7 md:size-9 fill-[url(#logo-gradient)]"/>
                                                 </div>
                                             )
@@ -94,4 +94,3 @@ const ChatInterface = ({ conversation = [], showHistory = true, isLoading }: {co
 );
 };
 
-export default ChatInterface;

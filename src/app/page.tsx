@@ -1,170 +1,35 @@
 'use client';
-import {FormEvent, useState} from "react";
-import { ChatInput } from "@/components/ui/ChatInput";
 import { Header } from "@/components/ui/custom/Header";
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
-
-import {Message} from "@/src/types";
-import ChatInterface from "@/components/ChatInterface";
-
-
+import { ChatInput } from "@/components/ui/ChatInput";
+import {ChatInterface} from "@/components/ChatInterface";
+import Sidebar from "@/components/ui/sidebar/Sidebar";
+import ToggleSidebarButton from "@/components/ui/sidebar/ToggleSidebarButton";
+import { useChatStore } from '@/src/store/chatStore';
 
 export default function AdvancedChatbot() {
-    const [multiModel, setMultiModel] = useState(false);
-    const [isOnline, setIsOnline] = useState(true);
-    const [factCheck, setFactCheck] = useState(false);
-    const [input, setInput] = useState("");
-    const [showHistory, setShowHistory] = useState(false);
-    const [conversation, setConversation] = useState<Message[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInput(e.target.value);
-    };
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!input.trim() || isLoading) return;
-
-        const userMessage: Message = {
-            id: conversation.length.toString(),
-            text: input,
-            isUser: true,
-        };
-
-        const botMessage: Message = {
-            id: (conversation.length + 1).toString(),
-            text: "",
-            isUser: false,
-        };
-
-        setConversation(prev => [...prev, userMessage, botMessage]);
-        setInput('');
-        setIsLoading(true);
-
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    messages: [{role: "user", content: input}]
-                }),
-            });
-
-            if (!response.ok) throw new Error('Failed to fetch response');
-            if (!response.body) throw new Error('No response body');
-
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder();
-            let currentText = '';
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-
-                const chunk = decoder.decode(value);
-                currentText += chunk;
-
-                setConversation(prev => {
-                    const newConversation = [...prev];
-                    newConversation[newConversation.length - 1].text = currentText;
-                    return newConversation;
-                });
-            }
-        } catch (error) {
-            setConversation(prev => {
-                const newConversation = [...prev];
-                newConversation[newConversation.length - 1].text = "Sorry, there was an error processing your message.";
-                return newConversation;
-            });
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    const { showHistory } = useChatStore();
     return (
         <div className="flex flex-col">
-            <Header isOnline={isOnline} setIsOnline={setIsOnline} />
+            <Header/>
             <div className="flex mt-24 h-[calc(100vh-14rem)] md:h-[calc(100vh-6rem)]">
-                {/* Mobile Sidebar */}
-                <aside className={`
-                    lg:hidden fixed inset-y-0 left-0 w-64 
-                    ${showHistory ? "-translate-x-0" : "-translate-x-full"}
-                    transition-transform duration-300 
-                    bg-background z-40 rounded-r-3xl border overflow-y-auto
-                `}>
-                    <SidebarContent messages={conversation} />
-                </aside>
-
-                {/* Desktop Sidebar */}
-                <aside className={`
-                    hidden lg:block
-                    ${showHistory ? "w-64" : "w-0"}
-                    transition-all duration-300 
-                    bg-pink-950/5 border rounded-tr-3xl overflow-hidden
-                `}>
-                    <div className="w-64">
-                        <SidebarContent messages={conversation} />
-                    </div>
-                </aside>
-
-                {/* Toggle Button */}
-                <button
-                    onClick={() => setShowHistory(!showHistory)}
-                    className="fixed top-2 ml-4 md:top-[6.5rem] md:ml-2  rounded-2xl p-2
-                    focus:outline-none text-pink-500 z-50"
-                >
-                    {showHistory ? <PanelLeftClose className="size-7" /> : <PanelLeftOpen className="size-7" />}
-                </button>
-
+                <Sidebar />
+                <ToggleSidebarButton />
                 {/* Main Content */}
                 <div className={`w-full flex justify-center`}>
-                <main className={`
-                    flex-1 flex flex-col justify-end
-                    h-[calc(100svh-11rem)] md:h-[calc(100svh-8rem)]
-                    transition-all duration-300 pt-2
-                    max-w-7xl w-full 
-                    ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
-                `}>
-
-                    <div className="px-2 md:px-12  overflow-y-auto space-y-2 flex flex-col flex-grow">
-                        <ChatInterface conversation={conversation} showHistory={showHistory} isLoading={isLoading} />
-                        <ChatInput
-                            input={input}
-                            handleInputChange={handleInputChange}
-                            handleSubmit={handleSubmit}
-                            multiModel={multiModel}
-                            setMultiModel={setMultiModel}
-                            factCheck={factCheck}
-                            setFactCheck={setFactCheck}
-                            isLoading={isLoading}
-                        />
-                    </div>
-                </main>
+                    <main className={`
+                        flex-1 flex flex-col justify-end
+                        h-[calc(100vh-11rem)] md:h-[calc(100svh-8rem)]
+                        transition-all duration-300 pt-2
+                        max-w-7xl w-full
+                        ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
+                    `}>
+                        <div className="px-2 md:px-12 overflow-y-auto space-y-2 flex flex-col flex-grow">
+                            <ChatInterface />
+                            <ChatInput />
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>
     );
 }
-
-const SidebarContent = ({messages}: { messages: Message[] }) => (
-    <div className="p-4">
-        <div className="flex items-center justify-center mb-4">
-            <div className="text-lg ml-2 mb-1 font-semibold bg-gradient-ai text-transparent bg-clip-text">
-                Chat History
-            </div>
-        </div>
-        <div className="space-y-2">
-            {messages.map((message, index) => (
-                <div
-                    key={index}
-                    className="px-1 py-2 hover:bg-pink-950/10 rounded-lg cursor-pointer truncate"
-                >
-                    {message.text.substring(0, 30)}...
-                </div>
-            ))}
-        </div>
-    </div>
-);

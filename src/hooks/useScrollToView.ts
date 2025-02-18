@@ -1,12 +1,12 @@
 import {useEffect,useRef} from "react";
-import {Message} from "ai";
+import {Message} from "@/src/types";
 
-export const useScrollToView = (messages:Message[]) => {
+export const useScrollToView = (conversation:Message[]) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+    }, [conversation]);
 
     return messagesEndRef;
 }
