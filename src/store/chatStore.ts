@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface Message {
     id: string;
@@ -15,6 +16,7 @@ interface ChatStore {
     conversation: Message[];
     isLoading: boolean;
     showHistory: boolean;
+    abortController: AbortController | null;
 
     // Actions
     setMultiModel: (value: boolean) => void;
@@ -25,9 +27,11 @@ interface ChatStore {
     setIsLoading: (value: boolean) => void;
     addMessage: (message: Message) => void;
     setShowHistory: (value: boolean) => void;
+    setAbortController: (controller: AbortController | null) => void;
 
     // API Call
     sendMessage: (message: string) => Promise<void>;
+    stopMessage: () => void;
 }
 
 export const useChatStore = create<ChatStore>((set, get) => ({
@@ -39,6 +43,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     conversation: [],
     isLoading: false,
     showHistory: false,
+    abortController: null,
 
     // Actions
     setMultiModel: (value) => set({ multiModel: value }),
@@ -48,6 +53,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     setConversation: (value) => set({ conversation: value }),
     setIsLoading: (value) => set({ isLoading: value }),
     setShowHistory: (value) => set({ showHistory: value }),
+    setAbortController: (controller) => set({ abortController: controller }),
     addMessage: (message) => set((state) => ({
         conversation: [...state.conversation, message]
     })),
@@ -55,28 +61,25 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     // API Call
     sendMessage: async (message: string) => {
         const store = get();
+        if (!message.trim() || store.isLoading) return;
 
-        if (!message.trim() || store.isLoading) {
-            return;
-        }
+        const controller = new AbortController();
+        store.setAbortController(controller);
 
         const userMessage: Message = {
-            id: crypto.randomUUID(),
+            id: uuidv4(),
             text: message,
             isUser: true,
         };
 
         const botMessage: Message = {
-            id: crypto.randomUUID(),
+            id: uuidv4(),
             text: "",
             isUser: false,
         };
 
-        // Add messages to conversation
         store.addMessage(userMessage);
         store.addMessage(botMessage);
-
-        // Clear input and set loading state
         store.setInput("");
         store.setIsLoading(true);
 
@@ -87,29 +90,28 @@ export const useChatStore = create<ChatStore>((set, get) => ({
                 body: JSON.stringify({
                     messages: [{ role: "user", content: message }]
                 }),
+                signal: controller.signal,
             });
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            if (!response.body) {
+            const reader = response.body?.getReader();
+            if (!reader) {
                 throw new Error('No response body received');
             }
 
-            const reader = response.body.getReader();
             const decoder = new TextDecoder();
             let accumulatedText = '';
 
             while (true) {
                 const { done, value } = await reader.read();
-
                 if (done) break;
 
                 const chunk = decoder.decode(value);
                 accumulatedText += chunk;
 
-                // Update the last message in the conversation
                 set((state) => ({
                     conversation: state.conversation.map((msg, index) =>
                         index === state.conversation.length - 1
@@ -119,16 +121,29 @@ export const useChatStore = create<ChatStore>((set, get) => ({
                 }));
             }
         } catch (error) {
-            // Update the last message with error
-            set((state) => ({
-                conversation: state.conversation.map((msg, index) =>
-                    index === state.conversation.length - 1
-                        ? { ...msg, text: `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}` }
-                        : msg
-                )
-            }));
+            if (error.name === 'AbortError') {
+                return;
+            } else {
+                set((state) => ({
+                    conversation: state.conversation.map((msg, index) =>
+                        index === state.conversation.length - 1
+                            ? { ...msg, text: `Error: ${error instanceof Error ? error.message : 'Unknown error occurred'}` }
+                            : msg
+                    )
+                }));
+            }
         } finally {
             store.setIsLoading(false);
+            store.setAbortController(null);
         }
-    }
+    },
+
+    stopMessage: () => {
+        const store = get();
+        if (store.abortController) {
+            store.abortController.abort();
+            store.setAbortController(null);
+        }
+        store.setIsLoading(false);
+    },
 }));

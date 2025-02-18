@@ -3,7 +3,7 @@ import { ArrowUp, CircleStop } from 'lucide-react';
 import { ControlPanel } from '@/components/ui/ControlPanel';
 
 export const ChatInput = () => {
-    const { input, setInput, isLoading, sendMessage } = useChatStore();
+    const { input, setInput, isLoading, sendMessage,stopMessage } = useChatStore();
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setInput(e.target.value);
@@ -14,6 +14,10 @@ export const ChatInput = () => {
         if (!input.trim()) return;
         await sendMessage(input);
     };
+    const handleStop = async () => {
+        stopMessage();
+    }
+
 
     return (
         <div className="">
@@ -43,8 +47,9 @@ export const ChatInput = () => {
                             {isLoading ? (
                                 <button
                                     type="button"
-                                    className="flex flex-row relative top-0 self-end rounded-[20px] bg-gradient-ai p-2 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="flex flex-row relative top-0 self-end rounded-[20px] bg-gradient-ai p-2 focus:outline-none "
                                     aria-label="Stop message"
+                                    onClick={handleStop}
                                 >
                                     <CircleStop className="size-6 animate-pulse" />
                                 </button>
@@ -52,7 +57,7 @@ export const ChatInput = () => {
                                 <button
                                     type="submit"
                                     disabled={!input?.trim()}
-                                    className="relative z-20 top-0 self-end rounded-[20px] bg-gradient-ai p-2 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="relative top-0 self-end rounded-[20px] bg-gradient-ai p-2 focus:outline-none hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                                     aria-label="Send message"
                                 >
                                     <ArrowUp className="size-6" />
