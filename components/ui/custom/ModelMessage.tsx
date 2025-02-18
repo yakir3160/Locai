@@ -29,15 +29,22 @@ export const ModelMessage = ({ message }: ModelMessageProps) => {
             transition={{ duration: 0.3 }}
             className="w-full flex"
         >
-            <div className="bg-pink-950/10 rounded-3xl rounded-tr-none max-w-full w-full mt-2">
+            <div className="bg-pink-950/10 rounded-3xl rounded-tr-none max-w-full w-full mt-2 text-md ">
                 <div className="p-4 rounded-3xl rounded-tr-none flex gap-2 border border-pink-500/50 bg-pink-950/5 text-foreground">
-                    <div className="prose dark:prose-invert max-w-none flex-grow whitespace-normal space-y-6">
+
+                    <div className="prose dark:prose-invert max-w-none flex-grow  space-y-2 w-full whitespace-normal">
+                        <div className="flex flex-col  ml-2">
+                            <div className={`${isLoading ? "animate-pulse" : ""} w-fit self-end`}>
+                                <HomeIcon className="size-7 md:size-9 fill-[url(#logo-gradient)]"/>
+                            </div>
+                        </div>
                         <ReactMarkdown
                             components={{
-                                code({ node, inline, className, children, ...props }) {
+                                code({node, inline, className, children, ...props}) {
                                     const match = /language-(\w+)/.exec(className || "")
                                     return !inline && match ? (
-                                        <CodeBlock language={match[1]} value={String(children).replace(/\n$/, "")} {...props} />
+                                        <CodeBlock language={match[1]}
+                                                   value={String(children).replace(/\n$/, "")} {...props} />
                                     ) : (
                                         <code className={className} {...props}>
                                             {children}
@@ -49,14 +56,10 @@ export const ModelMessage = ({ message }: ModelMessageProps) => {
                             {message.text}
                         </ReactMarkdown>
                     </div>
-                    <div className="flex flex-col gap-2 ml-2">
-                        <div className={`${isLoading ? "animate-pulse" : ""} w-fit self-start`}>
-                            <HomeIcon className="size-7 md:size-9 fill-[url(#logo-gradient)]" />
-                        </div>
-                    </div>
+
                 </div>
                 <button onClick={handleCopy} className="text-pink-500 p-3">
-                    {isCopied ? <CopyCheck className="size-6" /> : <Copy className="size-6" />}
+                    {isCopied ? <CopyCheck className="size-6"/> : <Copy className="size-6"/>}
                 </button>
             </div>
         </motion.div>
