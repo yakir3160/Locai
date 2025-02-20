@@ -6,14 +6,14 @@ import { UserMessage } from '@/components/ui/custom/UserMessage';
 import { ModelMessage } from '@/components/ui/custom/ModelMessage';
 
 export const ChatInterface = () => {
-    const { conversation, isLoading } = useChatStore();
+    const { conversation} = useChatStore();
     const conversationEndRef = useScrollToView(conversation);
 
     useEffect(() => {
         if (conversationEndRef.current) {
             conversationEndRef.current.scrollIntoView({ behavior: 'smooth' });
         }
-    }, [conversation]);
+    }, [conversationEndRef, conversation]);
 
     const containerVariants = {
         hidden: { opacity: 0, scale: 0.95 },
@@ -21,7 +21,7 @@ export const ChatInterface = () => {
             opacity: 1,
             scale: 1,
             transition: {
-                duration: 0.4,
+                duration: 0.6,
                 ease: "easeOut"
             }
         },
@@ -36,19 +36,12 @@ export const ChatInterface = () => {
     };
 
     return (
-        <div className="py-2 overflow-y-auto  flex flex-col flex-grow content-center justify-end">
+        <div className="py-2 overflow-y-auto  scrollbar flex flex-col flex-grow content-center justify-end h-fit ">
             <AnimatePresence mode="wait">
                 {!conversation.length ? (
-                    <motion.div
-                        key="empty-state"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.4 }}
-                        className="text-center text-gray-600 "
-                    >
+                    <div className={`text-center text-foreground text-opacity-50`}>
                         Start a conversation by typing in the chat box below.
-                    </motion.div>
+                    </div>
                 ) : (
                     <motion.div
                         key="chat-container"

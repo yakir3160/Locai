@@ -114,7 +114,11 @@
 .bg-gradient-ai-dark {
   @apply bg-gradient-to-r from-[#2c0412] via-[#380613] to-[#341107]; ;
 }
-
+.scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 109, 0, 0.25) rgba(255, 126, 191, 0.05);
+  scrollbar-gutter: revert;
+}
 .logo {
   background-image: linear-gradient(
           to left,

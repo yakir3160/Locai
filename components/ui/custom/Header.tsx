@@ -22,6 +22,7 @@ const OnlineSwitch = () => {
 export const Header = () => {
     return (
         <>
+            {/* Desktop Header */}
             <header className="hidden md:flex justify-between items-center p-4 bg-background fixed pt-6 px-10 left-0 right-0 z-10">
                 <div className="flex w-full justify-between items-center space-x-4">
                     <Logo />
@@ -31,11 +32,13 @@ export const Header = () => {
                     </div>
                 </div>
             </header>
-            <header className="md:hidden flex flex-col items-center p-4 bg-background fixed pt-3 px-6 left-0 right-0 z-10">
+
+            {/* Mobile Header */}
+            <header className="md:hidden flex flex-col items-center bg-background fixed pt-3 px-6 left-0 right-0 z-10">
                 <div className="-top-1 right-0 absolute p-4 pr-5">
                     <ThemeToggle />
                 </div>
-                <div className="w-full flex justify-center items-center">
+                <div className="w-full flex justify-center items-center ">
                     <Logo />
                 </div>
                 <OnlineSwitch />

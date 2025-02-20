@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import {Roboto_Mono, Kumar_One, Inter} from "next/font/google";
 import "./globals.css";
 import {twMerge} from "tailwind-merge";
-
+import { Providers } from '@/src/providers/theme';
+import { getTheme } from '@/lib/theme'
 
 
 const inter = Inter({
@@ -27,23 +28,24 @@ export const metadata: Metadata = {
 }
 };
 
+// src/app/layout.tsx
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={twMerge(
-            robertoMono.variable,
-            kumarOne.variable,
-            inter.variable,
-            `antialiased   bg-background text-foreground font-robertoMono`
-        )}
-      >
-        {children}
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" suppressHydrationWarning>
+        <body
+            className={twMerge(
+                robertoMono.variable,
+                kumarOne.variable,
+                inter.variable,
+                'antialiased bg-background text-foreground font-robertoMono'
+            )}
+        >
+        <Providers>{children}</Providers>
+        </body>
+        </html>
+    );
 }
