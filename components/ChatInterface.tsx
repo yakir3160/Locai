@@ -36,7 +36,7 @@ export const ChatInterface = () => {
     };
 
     return (
-        <div className="py-2 overflow-y-auto  scrollbar flex flex-col flex-grow content-center justify-end h-fit ">
+        <div className="py-2 overflow-y-auto  scrollbar flex flex-col flex-grow content-center justify-end  ">
             <AnimatePresence mode="wait">
                 {!conversation.length ? (
                     <div className={`text-center text-foreground text-opacity-50`}>

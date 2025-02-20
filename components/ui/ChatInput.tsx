@@ -1,6 +1,7 @@
 import { useChatStore } from "@/src/store/chatStore";
 import { ArrowUp, CircleStop } from 'lucide-react';
 import { ControlPanel } from '@/components/ui/ControlPanel';
+import {placeholder} from "@babel/types";
 
 export const ChatInput = () => {
     const { input, setInput, isLoading, sendMessage,stopMessage } = useChatStore();
@@ -28,7 +29,7 @@ export const ChatInput = () => {
                             <textarea
                                 value={input}
                                 onChange={handleInputChange}
-                                placeholder="How can I help you?"
+                                placeholder={isLoading ? "Generating..." : "Type your message here..."}
                                 className="flex-grow px-4 bg-transparent py-2 resize-none min-h-[40px] max-h-[200px] overflow-y-auto rounded-md focus:outline-none"
                                 rows={1}
                                 onInput={(e) => {

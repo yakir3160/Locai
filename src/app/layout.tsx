@@ -40,7 +40,7 @@ export default async function RootLayout({
                 robertoMono.variable,
                 kumarOne.variable,
                 inter.variable,
-                'antialiased bg-background text-foreground font-robertoMono'
+                'antialiased bg-background text-foreground font-robertoMono '
             )}
         >
         <Providers >
