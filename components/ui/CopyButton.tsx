@@ -20,8 +20,12 @@ import React, { useState } from "react";
                 onClick={handleCopy}
                 aria-label={isCopied ? "Copied to clipboard" : "Copy to clipboard"}
             >
+              
                 <div className="transition-transform duration-300">
+                    <span className="sr-only text-red">{isCopied ? "Copied" : "Copy"}</span>
+                    
                     {isCopied ? <CopyCheck className="size-5 text-green-500 " /> : <Copy className="size-5" />}
+                  
                 </div>
             </button>
         );
