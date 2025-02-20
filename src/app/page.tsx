@@ -18,7 +18,7 @@ export default function AdvancedChatbot() {
                 <div className={`w-full flex justify-center`}>
                     <main className={`
                         flex-1 flex flex-col justify-end
-                        h-[calc(100vh-10rem)] md:h-[calc(100svh-6rem)]
+                        h-[calc(100vh-11rem)] md:h-[calc(100svh-6rem)]
                         transition-all duration-300 pt-2
                         max-w-7xl w-full
                         ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
