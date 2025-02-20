@@ -1,8 +1,6 @@
-
 import { cookies } from 'next/headers'
 
-export function getTheme() {
+export async function getTheme() {
     const cookieStore = cookies()
-    const theme = cookieStore.get('theme')
-    return theme?.value || 'light'
+    return cookieStore.has('theme') ? cookieStore.get('theme')?.value : 'dark'
 }

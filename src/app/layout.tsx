@@ -3,8 +3,6 @@ import {Roboto_Mono, Kumar_One, Inter} from "next/font/google";
 import "./globals.css";
 import {twMerge} from "tailwind-merge";
 import { Providers } from '@/src/providers/theme';
-import { getTheme } from '@/lib/theme'
-
 
 const inter = Inter({
     variable: "--font-sans",
@@ -28,15 +26,16 @@ export const metadata: Metadata = {
 }
 };
 
-// src/app/layout.tsx
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+export default async function RootLayout({
+                                             children,
+                                         }: Readonly<{
     children: React.ReactNode;
 }>) {
+
     return (
         <html lang="en" suppressHydrationWarning>
         <body
+            suppressHydrationWarning
             className={twMerge(
                 robertoMono.variable,
                 kumarOne.variable,
@@ -44,8 +43,10 @@ export default function RootLayout({
                 'antialiased bg-background text-foreground font-robertoMono'
             )}
         >
-        <Providers>{children}</Providers>
+        <Providers >
+            {children}
+        </Providers>
         </body>
         </html>
-    );
+    )
 }
