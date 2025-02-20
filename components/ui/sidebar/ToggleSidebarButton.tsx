@@ -7,7 +7,7 @@ export default function ToggleSidebarButton() {
     return (
         <button
             onClick={() => setShowHistory(!showHistory)}
-            className="fixed top-2 ml-4 md:top-[6.5rem] md:ml-2 rounded-2xl p-2
+            className="fixed top-2 ml-4 md:-bottom-[49.5rem] md:ml-2  p-2
                 focus:outline-none text-pink-500 z-50"
         >
             {showHistory ? <PanelLeftClose className="size-7" /> : <PanelLeftOpen className="size-7" />}

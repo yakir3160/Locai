@@ -45,7 +45,7 @@ export const ChatInterface = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
-                        className="text-center text-gray-600"
+                        className="text-center text-gray-600 "
                     >
                         Start a conversation by typing in the chat box below.
                     </motion.div>
@@ -56,7 +56,7 @@ export const ChatInterface = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full content-center px-2 space-y-2 overflow-y-auto rounded-3xl bg-pink-950/5 max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-15rem)]"
+                        className="w-full  content-center  pt-2 space-y-2  overflow-y-auto  max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-15rem)]"
                     >
                         <AnimatePresence>
                             {conversation.map((message) => (
