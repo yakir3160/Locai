@@ -5,8 +5,8 @@ export default function SidebarContent() {
 
     return (
         <div className="p-4">
-            <div className="flex items-center justify-center mb-4">
-                <div className="text-lg ml-2 mb-1 font-semibold bg-gradient-ai text-transparent bg-clip-text">
+            <div className="flex items-center justify-center mb-4  ">
+                <div className="text-lg ml-2 mb-1 font-semibold bg-gradient-ai text-transparent bg-clip-text ">
                     Chat History
                 </div>
             </div>

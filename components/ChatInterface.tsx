@@ -36,10 +36,10 @@ export const ChatInterface = () => {
     };
 
     return (
-        <div className="py-2 overflow-y-auto  scrollbar flex flex-col flex-grow content-center justify-end  ">
+        <div className="flex flex-col scrollbar flex-grow content-center justify-end">
             <AnimatePresence mode="wait">
                 {!conversation.length ? (
-                    <div className={`text-center text-foreground text-opacity-50`}>
+                    <div className={`text-center  text-foreground text-opacity-50 mb-28 `}>
                         Start a conversation by typing in the chat box below.
                     </div>
                 ) : (
@@ -49,7 +49,7 @@ export const ChatInterface = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full  content-center  pt-2 space-y-2  overflow-y-auto  max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-15rem)]"
+                        className="w-full z-0  content-center  space-y-2 mb-28  "
                     >
                         <AnimatePresence>
                             {conversation.map((message) => (

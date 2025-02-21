@@ -33,9 +33,8 @@ export default async function RootLayout({
 }>) {
 
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en" >
         <body
-            suppressHydrationWarning
             className={twMerge(
                 robertoMono.variable,
                 kumarOne.variable,

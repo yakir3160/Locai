@@ -21,8 +21,8 @@ export const ChatInput = () => {
 
 
     return (
-        <div className="">
-            <div className="bg-pink-950/5 outline outline-1 outline-pink-500/20 rounded-t-[25px] text-base">
+        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 md:ml-1 w-full md:w-1/2 z-30  px-1">
+            <div className="bg-background outline outline-1 outline-pink-500/20 rounded-t-[25px] text-base">
                 <div className="bg-animation p-[0.5px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
                     <form onSubmit={handleSubmit} className="flex flex-col w-full items-center space-y-2 bg-background rounded-3xl p-1">
                         <div className="flex w-full items-center">

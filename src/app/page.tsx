@@ -8,25 +8,26 @@ import { useChatStore } from '@/src/store/chatStore';
 
 export default function AdvancedChatbot() {
     const { showHistory } = useChatStore();
+
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col min-h-screen">
             <Header/>
-            <div className="flex mt-24 h-[calc(100vh-14rem)] md:h-[calc(100vh-6rem)]">
+            <div className="flex flex-1 mt-24">
                 <Sidebar />
                 <ToggleSidebarButton />
-                {/* Main Content */}
-                <div className={`w-full flex justify-center`}>
+                <div className="flex-1 flex justify-center">
                     <main className={`
-                        flex-1 flex flex-col justify-end
-                        h-[calc(100vh-11rem)] md:h-[calc(100svh-6rem)]
-                        transition-all duration-300 pt-2
-                        max-w-7xl w-full
+                        flex flex-col
+                        flex-1
+                        content-center
+                        max-w-7xl
+                        transition-all duration-300
                         ${showHistory ? 'lg:ml-0' : 'lg:mx-4'}
                     `}>
-                        <div className="px-1 md:px-12 overflow-y-auto space-y-2 flex flex-col flex-grow">
+                        <div className="flex flex-col flex-1 px-1 md:pl-16 pb-3 max-w-[390px] md:max-w-screen-md lg:max-w-screen-lg">
                             <ChatInterface />
-                            <ChatInput />
                         </div>
+                            <ChatInput />
                     </main>
                 </div>
             </div>
