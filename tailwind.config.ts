@@ -69,13 +69,13 @@ export default {
   			robertoMono: [
   				'var(--font-roboto-mono)'
   			],
-  			kumarOne: [
-  				'var(--font-kumar-one)'
-  			],
   			sans: [
   				'var(--font-sans)'
-  			]
-  		},
+  			],
+			ptSerif: [
+  				'var(--font-pt-serif)'
+  			]		
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
