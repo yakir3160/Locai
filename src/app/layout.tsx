@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Roboto_Mono, Kumar_One, Inter,Fira_Code} from "next/font/google";
+import {Roboto_Mono, Inter,PT_Serif} from "next/font/google";
 import "./globals.css";
 import {twMerge} from "tailwind-merge";
 import { Providers } from '@/src/providers/theme';
@@ -12,11 +12,13 @@ const robertoMono = Roboto_Mono({
     variable: "--font-roboto-mono",
     subsets: ["latin"],
 });
-const kumarOne = Kumar_One({
-    variable: "--font-kumar-one",
+
+const ptSerif = PT_Serif({
+    variable: "--font-pt-serif",
     subsets: ["latin"],
     weight: "400",
 });
+
 
 export const metadata: Metadata = {
   title: "Locai",
@@ -37,7 +39,7 @@ export default async function RootLayout({
         <body
             className={twMerge(
                 robertoMono.variable,
-                kumarOne.variable,
+                ptSerif.variable,
                 inter.variable,
                 'antialiased bg-background text-foreground font-robertoMono  tracking-tight'
             )}
