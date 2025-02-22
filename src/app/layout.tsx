@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {Roboto_Mono, Kumar_One, Inter} from "next/font/google";
+import {Roboto_Mono, Kumar_One, Inter,Fira_Code} from "next/font/google";
 import "./globals.css";
 import {twMerge} from "tailwind-merge";
 import { Providers } from '@/src/providers/theme';
@@ -39,7 +39,7 @@ export default async function RootLayout({
                 robertoMono.variable,
                 kumarOne.variable,
                 inter.variable,
-                'antialiased bg-background text-foreground font-robertoMono '
+                'antialiased bg-background text-foreground font-robertoMono  tracking-tight'
             )}
         >
         <Providers >
