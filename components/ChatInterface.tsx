@@ -49,7 +49,7 @@ export const ChatInterface = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full z-0  content-center  space-y-2 mb-28  font-sans leading-loose  tracking-normal"
+                        className="w-full z-0  content-center  space-y-2 mb-28  font-sans leading-loose  tracking-wide"
                     >
                         <AnimatePresence>
                             {conversation.map((message) => (

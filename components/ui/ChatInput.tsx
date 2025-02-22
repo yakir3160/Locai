@@ -48,7 +48,7 @@ export const ChatInput = () => {
                             {isLoading ? (
                                 <button
                                     type="button"
-                                    className="flex flex-row relative top-0 self-end rounded-[20px] bg-gradient-ai p-2 focus:outline-none "
+                                    className="flex flex-row relative top-0 self-end rounded-[20px] bg-gradient-ai animate-pulse p-2 focus:outline-none "
                                     aria-label="Stop message"
                                     onClick={handleStop}
                                 >
@@ -65,6 +65,7 @@ export const ChatInput = () => {
                                 </button>
                             )}
                         </div>
+               
 
                     </form>
 
