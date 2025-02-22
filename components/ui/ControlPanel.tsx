@@ -16,7 +16,7 @@ export function ControlPanel() {
     <div className="space-y-4">
      
 
-      <div className="flex flex-row text-nowrap justify-center items-center md:justify-between p-2 space-y-2 md:space-y-0 text-sm">
+      <div className="flex flex-col md:flex-row text-nowrap justify-center items-center md:justify-between p-2 space-y-2 md:space-y-0 text-sm">
         <div className="flex flex-row items-center justify-between ">
           <div className="flex items-center space-x-2 p-2 rounded-full">
             <Checkbox
@@ -38,14 +38,28 @@ export function ControlPanel() {
             />
             <Label htmlFor="fact-check">Fact Check</Label>
           </div>
-        
-     
         </div>
-        {
-          isOnline &&(
-            <ModelDropdown />
-          )
-    }
+       
+        <div className="flex items-center space-x-2 b p-2 rounded-full">
+          <div className="flex flex-row items-center p-2 border">
+          {
+            multiModel && (
+              <span>Main</span>
+            )
+          }
+           <ModelDropdown />
+          </div>
+          <div className="flex flex-row items-center p-2 border ">
+           {
+          multiModel && (
+            <>
+            <span>2end</span>
+            <ModelDropdown />    
+          
+            </>
+          )} 
+            </div>              
+           </div>
       </div>
     </div>
   )

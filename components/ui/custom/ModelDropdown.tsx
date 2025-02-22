@@ -19,7 +19,7 @@ const ModelDropdown: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="w-fit flex items-center rounded-3xl outline-none border-none shadow-none">
+        <button className="w-fit flex items-center rounded-3xl p-2 outline-none   shadow-none">
           {selectedModel.displayName}
           <ChevronDown className="ml-2 h-4 w-4" />
         </button>
