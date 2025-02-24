@@ -1,5 +1,6 @@
 import { useChatStore } from '@/src/store/chatStore';
 import React from 'react';
+import {PinSidebarButton} from "@/components/ui/sidebar/PinSidebarButton";
 
 export const ChatHistory = () => {
     const { conversation } = useChatStore();
@@ -20,6 +21,7 @@ export const ChatHistory = () => {
                     </div>
                 ))}
             </div>
+            <PinSidebarButton/>
         </div>
     );
 };

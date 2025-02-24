@@ -17,9 +17,9 @@ const ModelDropdown: React.FC = () => {
   const [selectedModel, setSelectedModel] = React.useState(models[0]);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu >
       <DropdownMenuTrigger asChild>
-        <button className="w-fit flex items-center rounded-3xl p-2 outline-none   shadow-none">
+        <button className="w-fit flex items-center rounded-3xl p-2  text-xs md:text-base outline-none">
           {selectedModel.displayName}
           <ChevronDown className="ml-2 h-4 w-4" />
         </button>

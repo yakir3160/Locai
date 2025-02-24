@@ -33,6 +33,7 @@ interface ChatStore {
     models: Model[];
     selectedModel: Model;
     secondModel: Model;
+    pinedSidebar: boolean;
 
     // Actions
     setModel: (model: Model) => void;
@@ -45,6 +46,7 @@ interface ChatStore {
     setIsLoading: (value: boolean) => void;
     addMessage: (message: Message) => void;
     setShowHistory: (value: boolean) => void;
+    setPinedSidebar: (value: boolean) => void;
     setAbortController: (controller: AbortController | null) => void;
 
     // API Call
@@ -65,6 +67,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     models: MODELS,
     selectedModel: MODELS[0],
     secondModel: MODELS[1],
+    pinedSidebar: false,
 
     // Actions
     setModel : (value) => set({ selectedModel: value }),
@@ -76,6 +79,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     setConversation: (value) => set({ conversation: value }),
     setIsLoading: (value) => set({ isLoading: value }),
     setShowHistory: (value) => set({ showHistory: value }),
+    setPinedSidebar: (value) => set({ pinedSidebar: value }),
     setAbortController: (controller) => set({ abortController: controller }),
     addMessage: (message) => set((state) => ({
         conversation: [...state.conversation, message]

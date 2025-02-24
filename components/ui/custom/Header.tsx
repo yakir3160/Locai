@@ -3,6 +3,9 @@ import ThemeToggle from "@/components/ui/custom/ThemeToggle";
 import { Logo } from "@/components/ui/custom/Logo";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import ModelDropdown from "@/components/ui/custom/ModelDropdown";
+import * as React from "react";
+import {ModelSelect} from "@/components/ModelSelect";
 
 const OnlineSwitch = () => {
     const { isOnline, setIsOnline } = useChatStore();
@@ -25,10 +28,11 @@ export const Header = () => {
             {/* Desktop Header */}
             <header className="hidden md:flex justify-between items-center p-4 bg-background fixed pt-6 px-10 left-0 right-0 z-10">
                 <div className="flex w-full justify-between items-center space-x-4">
-                    <Logo />
+                    <Logo/>
+                    <ModelSelect/>
                     <div className="flex items-center space-x-4">
-                        <OnlineSwitch />
-                        <ThemeToggle />
+                        <OnlineSwitch/>
+                        <ThemeToggle/>
                     </div>
                 </div>
             </header>
@@ -36,12 +40,13 @@ export const Header = () => {
             {/* Mobile Header */}
             <header className="md:hidden flex flex-col items-center bg-background fixed pt-3 px-6 left-0 right-0 z-10">
                 <div className="-top-1 right-0 absolute p-4 pr-5">
-                    <ThemeToggle />
+                    <ThemeToggle/>
                 </div>
                 <div className="w-full flex justify-center items-center ">
-                    <Logo />
+                    <Logo/>
                 </div>
-                <OnlineSwitch />
+                <ModelSelect/>
+                {/*<OnlineSwitch/>*/}
             </header>
         </>
     );
