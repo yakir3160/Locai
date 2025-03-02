@@ -11,13 +11,25 @@ export default function Sidebar() {
             {/* Mobile Sidebar */}
             <aside
                 className={`
-                 fixed inset-y-0 left-0 w-64
+                 fixed inset-y-0 left-0 w-64 md:hidden
                 ${showHistory ? "-translate-x-0" : "-translate-x-full"}
                 transition-transform duration-300
-                bg-background z-40 rounded-r-3xl  border-r border-l-0 border-b-0  border-pink-500/20 overflow-y-auto
+                bg-background border border-pink-500/20 z-40   rounded-r-3xl  overflow-y-auto
             `}>
                 <SidebarContent />
             </aside>
+
+            {/* Desktop Sidebar */}
+            <aside
+                className={`
+                 hidden md:block h-full
+                ${showHistory ? "translate-x-0" : "-translate-x-full"}
+                transition-transform duration-300
+                bg-pink-950/5  rounded-r-3xl   mt-2  overflow-y-auto
+            `}>
+                <SidebarContent />
+            </aside>
+
 
         </>
     );

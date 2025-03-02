@@ -1,4 +1,3 @@
-import { useChatStore } from '@/src/store/chatStore';
 import {ChatHistory} from '@/components/ui/sidebar/ChatHistory';
 
 export default function SidebarContent() {
