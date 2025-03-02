@@ -25,7 +25,7 @@ export default function Sidebar() {
                  hidden md:block h-full
                 ${showHistory ? "translate-x-0" : "-translate-x-full"}
                 transition-transform duration-300
-                bg-pink-950/5  rounded-r-3xl   mt-2  overflow-y-auto
+                bg-pink-950/5 dark:bg-pink-950/20 rounded-r-3xl   mt-2  overflow-y-auto
             `}>
                 <SidebarContent />
             </aside>
