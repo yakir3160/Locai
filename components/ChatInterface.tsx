@@ -36,10 +36,10 @@ export const ChatInterface = () => {
     };
 
     return (
-        <div className="flex flex-col  flex-grow content-center justify-end ">
+        <div className="flex flex-col  flex-grow content-center justify-end  ">
             <AnimatePresence mode="wait">
                 {!conversation.length ? (
-                    <div className={`text-center  text-foreground text-opacity-50 `}>
+                    <div className={`text-center  text-foreground text-opacity-50  `}>
                         Start a conversation by typing in the chat box below.
                     </div>
                 ) : (
@@ -49,7 +49,7 @@ export const ChatInterface = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full z-0  content-center  space-y-2   font-sans leading-normal  tracking-wide"
+                        className="w-full z-0  content-center  space-y-2   font-sans leading-normal  tracking-wide   "
                     >
                         <AnimatePresence>
                             {conversation.map((message) => (

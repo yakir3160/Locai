@@ -12,7 +12,7 @@ interface CodeBlockProps {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ language, value }) => {
     return (
-        <div className="rounded-3xl bg-gradient-ai-dark flex flex-col overflow-hidden ">
+        <div className="rounded-3xl bg-gradient-ai-dark flex flex-col overflow-y-auto ">
             <div className="flex items-center justify-between">
                 <span className="font-bold rounded-3xl mx-2 bg-gradient-ai text-transparent bg-clip-text w-fit p-2 ">
                     {language.trim()}

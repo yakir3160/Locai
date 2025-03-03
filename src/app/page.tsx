@@ -21,22 +21,19 @@ export default function AdvancedChatbot() {
                     z-40 md:z-0
                  
                 `}>
-                    <Sidebar />
+                    <Sidebar/>
                 </div>
                 <main className={`
                     flex flex-col flex-grow             
-                    mx-auto
+                    mx-auto               
                     md:mt-2            
                     p-2 md:p-4    
                     h-[calc(100vh-17rem)] md:h-[calc(100vh-14rem)]            
                     relative
                     rounded-3xl
-               
                     transition-all duration-300 ease-in-out
                     ${showHistory ? 'md:ml-80' : 'md:ml-0'}
-                    overflow-x-auto
-                    
-                         
+                    overflow-x-auto               
                 `}>
                     <ChatInterface/>
                     <div className={`fixed bottom-0 flex justify-center w-full self-center `}>

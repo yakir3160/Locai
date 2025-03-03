@@ -19,12 +19,12 @@ export const ModelMessage: React.FC<ModelMessageProps> = ({ message }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="w-full flex justify-end" // Changed to justify-end for right alignment
+            className="w-full flex justify-start"
         >
-            <div className="rounded-3xl rounded-tr-none max-w-3/4 w-fit text-md bg-pink-950/5 dark:bg-pink-950/20  ml-auto"> {/* Keep rounded-tr-none for right bubble pointer, added ml-auto */}
-                <div className="prose dark:prose-invert bg-pink-950/5 rounded-3xl rounded-tr-none p-5 flex flex-col gap-2 text-foreground whitespace-normal">
-                    <div className="flex flex-col mr-2"> {/* Changed ml-2 to mr-2 */}
-                        <div className={`${isLoading ? "animate-pulse" : ""} w-fit self-end`}> {/* Kept self-end for right alignment */}
+            <div className="rounded-3xl rounded-tl-none max-w-3/4 w-full md:w-fit text-md bg-pink-950/5 dark:bg-pink-950/20  mr-auto ">
+                <div className="prose dark:prose-invert bg-pink-950/5 rounded-3xl  rounded-tl-none p-5 flex flex-col gap-2 text-foreground whitespace-normal ">
+                    <div className="flex flex-col mr-2 w-fit">
+                        <div className={`${isLoading ? "animate-pulse" : ""} w-fit self-start`}>
                             <HomeIcon className="size-7 md:size-9 fill-[url(#logo-gradient)]" />
                         </div>
                     </div>

@@ -18,7 +18,6 @@ export default function Sidebar() {
             `}>
                 <SidebarContent />
             </aside>
-
             {/* Desktop Sidebar */}
             <aside
                 className={`
@@ -29,8 +28,6 @@ export default function Sidebar() {
             `}>
                 <SidebarContent />
             </aside>
-
-
         </>
     );
 }
