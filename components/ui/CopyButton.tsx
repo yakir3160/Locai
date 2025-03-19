@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Copy, CopyCheck } from "lucide-react";
+import { Clipboard, ClipboardCheck } from "lucide-react";
 
 interface CopyButtonProps {
     text: string;
@@ -21,18 +21,13 @@ const CopyButton: React.FC<CopyButtonProps> = ({ text }) => {
             aria-label={isCopied ? "Copied to clipboard" : "Copy to clipboard"}
         >
 
-            <div className="transition-all duration-500 text-xs md:text-sm">
+            <div className=" flex items-center justify-center space-x-1 transition-all duration-500 text-xs md:text-sm">
                 {isCopied ?
-                    <div className={`flex items-center justify-center space-x-2`}>
-                        <CopyCheck className="size-4 md:size-5 text-green-500 "/>
-                        <span className="text-green-500">Copied to clipboard</span>
-                    </div>
+                    <ClipboardCheck className="size-4  text-green-500 "/>
                     :
-                    <div className={`flex items-center justify-center space-x-2`}>
-                        <Copy className="size-4 md:size-5" />
-                        <span>Copy to clipboard</span>
-                    </div>
+                    <Clipboard className="size-4 "/>
                 }
+                <span className={`${isCopied && 'text-green-500'}`}>Copy </span>
             </div>
         </button>
     );
