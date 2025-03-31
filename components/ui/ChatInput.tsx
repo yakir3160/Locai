@@ -22,7 +22,7 @@ export const ChatInput = () => {
     return (
         <div className=" md:ml-1 w-full md:w-1/2 z-30  px-1 self-center ">
             <div className="bg-pink-950/5 dark:bg-pink-950/20  outline outline-1 outline-pink-500/20 rounded-t-[25px] text-base">
-                <div className="bg-animation p-[0.5px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
+                <div className="bg-animation p-[0.8px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-[25px] pb-[0.8px]">
                     <form onSubmit={handleSubmit} className="flex flex-col w-full items-center space-y-2 bg-background rounded-3xl p-1">
                         <div className="flex w-full justify-center items-center">
                             <textarea
