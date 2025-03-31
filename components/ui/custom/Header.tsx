@@ -11,11 +11,11 @@ const OnlineSwitch = () => {
     const { isOnline, setIsOnline } = useChatStore();
 
     return (
-        <div className={`flex items-center justify-between space-x-2 font-bold border transition-all duration-300 mt-2 md:mt-0
+        <div className={`flex items-center justify-between w-32 space-x-2 font-bold border transition-all duration-300 mt-2 md:mt-0 
             ${isOnline ? "border-green-500" : "border-pink-500"} p-2 rounded-3xl`}>
             <Switch id="online-mode" checked={isOnline} onCheckedChange={setIsOnline} />
             <Label htmlFor="online-mode"
-                   className={`transition-all ${isOnline ? "text-green-500" : "bg-gradient-ai text-transparent bg-clip-text"} w-max`}>
+                   className={`transition-all ${isOnline ? "text-green-500 pl-1" : " pl-2 bg-gradient-ai text-transparent bg-clip-text"} w-full`}>
                 {isOnline ? "Online" : "Local"}
             </Label>
         </div>
@@ -30,7 +30,7 @@ export const Header = () => {
                 <div className="flex w-full justify-between items-center space-x-4">
                     <Logo/>
                     <ModelSelect/>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 ">
                         <OnlineSwitch/>
                         <ThemeToggle/>
                     </div>

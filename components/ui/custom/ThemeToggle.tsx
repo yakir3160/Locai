@@ -21,7 +21,7 @@ const ThemeToggle = () => {
 
     if (!mounted) {
         return (
-            <div className="bg-gradient-ai p-[0.7px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
+            <div className="bg-gradient-ai p-[0.8px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
                 <button className="p-2 rounded-3xl bg-background transition-colors" aria-label="Loading theme">
                     <SunMoon size={20} className="text-pink-500 animate-pulse" />
                 </button>
@@ -30,7 +30,7 @@ const ThemeToggle = () => {
     }
 
     return (
-        <div className="bg-gradient-ai p-[0.7px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
+        <div className="bg-gradient-ai p-[0.8px] shadow-[0_1px_10px_rgba(255,105,180,0.5)] rounded-3xl">
             <button
                 onClick={toggleTheme}
                 className="p-2 rounded-3xl bg-background transition-colors"

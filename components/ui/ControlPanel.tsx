@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { useChatStore } from "@/src/store/chatStore"
 import ModelDropdown from "./custom/ModelDropdown"
 import { X } from "lucide-react"
+import {RoleSelector} from "@/components/ui/custom/RoleSelector";
 
 
 
@@ -39,6 +40,7 @@ export function ControlPanel() {
               />
               <Label htmlFor="fact-check" className={`text-xs md:text-base`}>Fact Check</Label>
             </div>
+            {/*<RoleSelector/>*/}
           </div>
 
         </div>
