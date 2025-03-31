@@ -22,10 +22,7 @@ const ptSerif = PT_Serif({
 
 export const metadata: Metadata = {
   title: "Locai",
-  description: "Locai is a chat application for local models",
-    icons: {
-        icon: '@/src/assets/icons/home-smile.svg',
-}
+  description: "Locai is a chat application for local models"
 };
 
 export default async function RootLayout({
