@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
+import { useChatHistoryStore } from './chatHistoryStore';
 const MODELS = [
     { name: "gpt-4-0125-preview", displayName: "GPT-4 Turbo", company: "OpenAI" },
     { name: "gpt-3.5-turbo", displayName: "GPT-3.5 Turbo", company: "OpenAI" },
@@ -57,6 +58,7 @@ interface ChatStore {
 export const useChatStore = create<ChatStore>((set, get) => ({
     // Initial state
     multiModel: false,
+
     isOnline: true,
     factCheck: false,
     input: "",
@@ -115,10 +117,17 @@ export const useChatStore = create<ChatStore>((set, get) => ({
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    messages: [{ role: "user", content: message }]
+                    messages: [
+                        ...store.conversation.map(msg => ({
+                            role: msg.isUser ? "user" : "assistant",
+                            content: msg.text
+                        })),
+                        { role: "user", content: message }
+                    ]
                 }),
                 signal: controller.signal,
             });
+
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -147,7 +156,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
                     )
                 }));
             }
-        } catch (error) {
+        } catch (error : any) {
             if (error.name === 'AbortError') {
                 return;
             } else {
